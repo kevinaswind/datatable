@@ -13,74 +13,52 @@ class PostController extends Controller
         return view('posts.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Post  $post
-     * @return \Illuminate\Http\Response
-     */
     public function show(Post $post)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Post  $post
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Post $post)
     {
-        //
+        dd($post);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Post  $post
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Post $post)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Post  $post
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Post $post)
     {
-        //
+        echo "Delete $post->uuid";
     }
 
     public function getPostData()
     {
-        return dataTables(Post::select('first_name', 'last_name', 'title', 'body'))->toJson();
+        $query = Post::select('id', 'uuid', 'first_name', 'last_name', 'title', 'created_at');
+
+        if (request('date_filter')) {
+            $filter_date = now()->subDays(request('date_filter'))->toDateString();
+            info($filter_date);
+            $query->where('created_at', '>=', $filter_date);
+        }
+
+        return datatables($query)->toJson();
+
+//        return dataTables(Post::select('id', 'uuid', 'first_name', 'last_name', 'title', 'created_at'))
+//            ->setRowClass(function ($post) {
+//                return $post->id % 2 == 0 ? 'alert-danger' : 'alert-info';
+//            })
+//            ->toJson();
     }
 }

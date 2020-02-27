@@ -10892,6 +10892,7 @@ a.text-dark:focus {
   color: #555;
   border-radius: 4px;
   transition: all 0.3s ease;
+  box-shadow: none;
 }
 
 .page-link:hover {
@@ -10900,6 +10901,10 @@ a.text-dark:focus {
 }
 
 .page-item {
+  box-shadow: none;
+}
+
+.page-item:not(:last-child) {
   margin-right: 0.5rem;
 }
 
@@ -10908,47 +10913,73 @@ a.text-dark:focus {
   color: #fff;
   border-color: #1cc9e4;
   outline: none;
-}
-
-.page-item.active .page-link:focus {
   box-shadow: none;
 }
 
-.page-item.active .page-link:hover {
-  box-shadow: none;
-}
-
-.buttons-html5 {
+.buttons-html5,
+.buttons-colvis {
   background-color: #fff;
   color: #555;
   border: 1px solid #dee2e6;
 }
 
-.buttons-html5:hover {
+.buttons-html5:hover,
+.buttons-colvis:hover {
   background-color: #1cc9e4;
   color: #fff;
   border-color: #1cc9e4;
   outline: none;
 }
 
+.custom-select,
 .custom-select-sm {
   height: auto;
   padding: 0.375rem 1.75rem 0.375rem 0.75rem;
   font-size: 0.9rem;
 }
 
-.form-control-sm {
+select.form-control,
+select.form-control-sm {
   height: auto;
   padding: 0.375rem 1.75rem 0.375rem 0.75rem;
   font-size: 0.9rem;
   border-radius: 4px;
 }
 
-.form-control-sm:focus {
+select.form-control:focus,
+select.form-control-sm:focus {
   box-shadow: none;
+  border: 1px solid #1cc9e4;
 }
 
-input:focus {
+.form-control,
+.form-control-sm {
+  height: auto;
+  padding: 0.375rem 0.75rem 0.375rem 0.75rem;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  line-height: 1.6;
+}
+
+.form-control:focus,
+.form-control-sm:focus {
   box-shadow: none;
+  border: 1px solid #1cc9e4;
+}
+
+input[type=search] {
+  border-radius: 20px;
+}
+
+.dropdown-menu {
+  padding: 0;
+}
+
+.dropdown-item.active {
+  background-color: #1cc9e4;
+}
+
+.dropdown-item:active {
+  background-color: #1cc9e4;
 }
 
